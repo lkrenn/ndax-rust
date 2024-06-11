@@ -42,16 +42,16 @@ impl OrderBook {
                         if order_type == 0 {
                             // This is a bid
                             if let (Some(price), Some(volume)) = (
-                                order.get(7).and_then(|v| v.as_f64()),
-                                order.get(9).and_then(|v| v.as_f64()),
+                                order.get(6).and_then(|v| v.as_f64()),
+                                order.get(8).and_then(|v| v.as_f64()),
                             ) {
                                 self.bids.push(Level { price, volume });
                             }
                         } else if order_type == 1 {
                             // This is an ask
                             if let (Some(price), Some(volume)) = (
-                                order.get(7).and_then(|v| v.as_f64()),
-                                order.get(9).and_then(|v| v.as_f64()),
+                                order.get(6).and_then(|v| v.as_f64()),
+                                order.get(8).and_then(|v| v.as_f64()),
                             ) {
                                 self.asks.push(Level { price, volume });
                             }
@@ -79,8 +79,8 @@ impl OrderBook {
             if let Ok(update_data) = serde_json::from_str::<Vec<Vec<Value>>>(update_string) {
                 for order in update_data {
                     if let Some(order_type) = order.last().and_then(|v| v.as_i64()) {
-                        let price = order.get(7).and_then(|v| v.as_f64()).unwrap_or(0.0);
-                        let volume = order.get(9).and_then(|v| v.as_f64()).unwrap_or(0.0);
+                        let price = order.get(6).and_then(|v| v.as_f64()).unwrap_or(0.0);
+                        let volume = order.get(8).and_then(|v| v.as_f64()).unwrap_or(0.0);
 
                         if order_type == 0 {
                             // This is a bid
@@ -155,8 +155,8 @@ impl fmt::Display for OrderBook {
         writeln!(f, "Order Book:")?;
         writeln!(
             f,
-            "{:<10} {:<20} | {:<10} {}",
-            "Depth", "Bid", "Ask", "Depth"
+            "           {:<12} {:<11} | {:<12 } {}",
+            "Bid", "Depth", "Ask", "Depth"
         )?;
         for i in 0..self.depth {
             let bid_level = self

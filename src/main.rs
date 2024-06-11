@@ -80,7 +80,9 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                         // println!("Update Event: {}", &json_msg);
                         order_book.initialize(&json_msg);
                     } else if update == constants::UPDATE {
-                        println!("Update Event: {}", &json_msg);
+                        order_book.update(&json_msg);
+                        //println!("Update Event: {}", &json_msg);
+                        println!("order book: {}", order_book);
                     }
                 }
                 // Assuming heartbeat messages can be distinguished by a lack of "b" or "a" keys
