@@ -1,23 +1,56 @@
 use futures_util::{SinkExt, StreamExt};
 use serde_json::json;
 use serde_json::Value;
+use std::env;
 use tokio;
 use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
 use url::Url;
 
-mod order_book;
 mod constants;
+mod order_book;
+mod order_manager;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     dotenv::dotenv().ok(); // Load .env file
 
-    let url = Url::parse("wss://api.ndax.io/WSGateway").expect("Invalid WebSocket URL");
+    let url = Url::parse(constants::WSS_URL).expect("Invalid WebSocket URL");
+    let api_url = Url::parse(constants::REST_URL).expect("Invalid REST URL");
+
+    let api_key = env::var("API_KEY").expect("Invalid API KEY");
+    let signature = env::var("SIGNATURE").expect("Invalid Signature");
+    let user_id = env::var("USER_ID").expect("Invalid User ID");
+    let account_name = env::var("ACCOUNT_NAME").expect("Invalid Account Name");
+    let account_id = env::var("ACCOUNT_ID").expect("Invalid Account ID");
 
     let mut order_book = order_book::OrderBook::new(10);
 
+    let order_manager = order_manager::OrderManager::new(
+        &api_url.to_string(),
+        &api_key.to_string(),
+        &signature.to_string(),
+        &user_id.to_string(),
+        &account_name.to_string(),
+        &account_id.to_string(),
+    );
+
+    // match order_manager.authenticate().await {
+    //     Ok(orders) => println!("Open orders: {:?}", orders),
+    //     Err(e) => println!("Error fetching open orders: {:?}", e),
+    // }
+
+    // match order_manager.get_open_orders().await {
+    //     Ok(orders) => println!("Open orders: {:?}", orders),
+    //     Err(e) => println!("Error fetching open orders: {:?}", e),
+    // }
+
+    match order_manager.cancel_all_orders().await {
+        Ok(orders) => println!("Cancelled Orders: {:?}", orders),
+        Err(e) => println!("Error cancelling orders: {:?}", e),
+    }
+
     // Connect to the WebSocket server
-    let (ws_stream, response) = connect_async(url)
+    let (ws_stream, _response) = connect_async(url)
         .await
         .expect("Failed to connect to WebSocket server");
 
@@ -77,17 +110,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let json_msg: Value = serde_json::from_str(&text)?;
                 if let Some(update) = json_msg.get("n") {
                     if update == constants::SUBSCRIBE {
-                        // println!("Update Event: {}", &json_msg);
                         order_book.initialize(&json_msg);
                     } else if update == constants::UPDATE {
                         order_book.update(&json_msg);
-                        //println!("Update Event: {}", &json_msg);
                         println!("order book: {}", order_book);
                     }
-                }
-                // Assuming heartbeat messages can be distinguished by a lack of "b" or "a" keys
-                else {
-                    // Handle the heartbeat
+                } else {
                     println!("Unknown message");
                 }
             }
