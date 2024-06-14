@@ -5,6 +5,8 @@ pub const REST_URL: &str = "https://api.ndax.io:8443/AP/";
 // Order book messages
 pub const SUBSCRIBE: &str = "SubscribeLevel2";
 pub const UPDATE: &str = "Level2UpdateEvent";
+pub const SUBSCRIBE_TRADES: &str = "SubscribeTrades";
+pub const UPDATE_TRADES: &str = "TradeDataUpdateEvent";
 
 // REST API Private Endpoints
 pub const GET_OPEN_ORDERS_PATH: &str = "GetOpenOrders";
