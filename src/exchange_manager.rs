@@ -15,6 +15,19 @@ impl ExchangeManager {
             client: Client::new(),
         }
     }
+    pub async fn ping(&self) -> Result<serde_json::Value, Box<dyn Error>> {
+        let url = format!("{}{}", self.api_url, constants::PING);
+        let response = self
+            .client
+            .get(&url)
+            .send()
+            .await?
+            .json::<serde_json::Value>()
+            .await?;
+
+        Ok(response)
+    }
+
     pub async fn get_assets(&self) -> Result<serde_json::Value, Box<dyn Error>> {
         let url = format!("{}{}", self.api_url, constants::ASSETS);
         let response = self
