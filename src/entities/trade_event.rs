@@ -1,5 +1,3 @@
-// trade_event.rs
-
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]

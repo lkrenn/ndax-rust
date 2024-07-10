@@ -1,0 +1,292 @@
+[
+    {
+        "min_withdraw": 1e-8,
+        "name": "Bitcoin",
+        "unified_cryptoasset_id": 31652
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Litecoin",
+        "unified_cryptoasset_id": 2
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Ether",
+        "unified_cryptoasset_id": 29991
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "XRP",
+        "unified_cryptoasset_id": 27809
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Bitcoin Cash",
+        "unified_cryptoasset_id": 1831
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Canadian Dollar",
+        "unified_cryptoasset_id": 29258
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "EOS",
+        "unified_cryptoasset_id": 1765
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Stellar",
+        "unified_cryptoasset_id": 512
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "DOGECoin",
+        "unified_cryptoasset_id": 31751
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "True USD",
+        "unified_cryptoasset_id": 2563
+    },
+    {
+        "min_withdraw": 0.00001,
+        "name": "Cardano",
+        "unified_cryptoasset_id": 28835
+    },
+    {
+        "min_withdraw": 0.01,
+        "name": "Tether",
+        "unified_cryptoasset_id": 825
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Chainlink",
+        "unified_cryptoasset_id": 1975
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Polkadot",
+        "unified_cryptoasset_id": 31059
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Uniswap",
+        "unified_cryptoasset_id": 7083
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "The Graph",
+        "unified_cryptoasset_id": 6719
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Compound",
+        "unified_cryptoasset_id": 5692
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Aave",
+        "unified_cryptoasset_id": 7278
+    },
+    {
+        "min_withdraw": 0.00001,
+        "name": "MATIC",
+        "unified_cryptoasset_id": 3890
+    },
+    {
+        "min_withdraw": 0.01,
+        "name": "USDC",
+        "unified_cryptoasset_id": 3408
+    },
+    {
+        "min_withdraw": 0.01,
+        "name": "Songbird",
+        "unified_cryptoasset_id": 12186
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Shiba Inu",
+        "unified_cryptoasset_id": 31501
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Fantom",
+        "unified_cryptoasset_id": 3513
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Hedera",
+        "unified_cryptoasset_id": 4642
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Axie Infinity",
+        "unified_cryptoasset_id": 6783
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "Terra Classic",
+        "unified_cryptoasset_id": 4172
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Decentraland",
+        "unified_cryptoasset_id": 1966
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Avalanche",
+        "unified_cryptoasset_id": 5805
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Solana",
+        "unified_cryptoasset_id": 28825
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Algorand",
+        "unified_cryptoasset_id": 30025
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "The Sandbox",
+        "unified_cryptoasset_id": 6210
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Celo",
+        "unified_cryptoasset_id": 5567
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Near",
+        "unified_cryptoasset_id": 6535
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Alien Worlds",
+        "unified_cryptoasset_id": 9119
+    },
+    {
+        "min_withdraw": 0.00001,
+        "name": "VeChain",
+        "unified_cryptoasset_id": 3077
+    },
+    {
+        "min_withdraw": 0.00001,
+        "name": "Gala",
+        "unified_cryptoasset_id": 7080
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "Thorchain",
+        "unified_cryptoasset_id": 9905
+    },
+    {
+        "min_withdraw": 0.1,
+        "name": "Binance Coin",
+        "unified_cryptoasset_id": 1839
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "EthereumPoW",
+        "unified_cryptoasset_id": 21296
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Flare",
+        "unified_cryptoasset_id": 7950
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Arbitrum",
+        "unified_cryptoasset_id": 21129
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "Cosmos",
+        "unified_cryptoasset_id": 30019
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Terra",
+        "unified_cryptoasset_id": 20314
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "liquid staked ether",
+        "unified_cryptoasset_id": 8085
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "Optimism",
+        "unified_cryptoasset_id": 11840
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "Quant",
+        "unified_cryptoasset_id": 3155
+    },
+    {
+        "min_withdraw": 1e-8,
+        "name": "PEPE",
+        "unified_cryptoasset_id": 31616
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "KAVA",
+        "unified_cryptoasset_id": 4846
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Celestia",
+        "unified_cryptoasset_id": 22861
+    },
+    {
+        "min_withdraw": 0.01,
+        "name": "Injective",
+        "unified_cryptoasset_id": 7226
+    },
+    {
+        "min_withdraw": 0.001,
+        "name": "RENDER",
+        "unified_cryptoasset_id": 5690
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Sei",
+        "unified_cryptoasset_id": 23149
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "SUI",
+        "unified_cryptoasset_id": 25169
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Fetch",
+        "unified_cryptoasset_id": 3773
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Pyth Network",
+        "unified_cryptoasset_id": 28177
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Stacks",
+        "unified_cryptoasset_id": 31005
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Jasmy",
+        "unified_cryptoasset_id": 8425
+    },
+    {
+        "min_withdraw": 0.0001,
+        "name": "Dusk",
+        "unified_cryptoasset_id": 4092
+    }
+]

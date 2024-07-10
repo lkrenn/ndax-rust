@@ -8,12 +8,13 @@ use std::fs::OpenOptions;
 use std::path::Path;
 use tokio;
 use tokio_tungstenite::{connect_async, tungstenite::protocol::Message};
-use trade_event::TradeEvent;
 use url::Url;
 
-mod trade_event;
+mod entities;
+use entities::trade_event::TradeEvent;
 
 mod constants;
+mod exchange_manager;
 mod order_book;
 mod order_manager;
 
@@ -41,20 +42,32 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         &account_id.to_string(),
     );
 
+    match order_manager.get_account_id().await {
+        Ok(result) => println!("account id: {:?}", result),
+        Err(e) => println!("Error getting accountId; {:?}", e),
+    }
+
     // match order_manager.authenticate().await {
     //     Ok(orders) => println!("Open orders: {:?}", orders),
     //     Err(e) => println!("Error fetching open orders: {:?}", e),
     // }
 
-    // match order_manager.get_open_orders().await {
-    //     Ok(orders) => println!("Open orders: {:?}", orders),
-    //     Err(e) => println!("Error fetching open orders: {:?}", e),
-    // }
+    match order_manager.get_open_orders().await {
+        Ok(orders) => println!("Open orders: {:?}", orders),
+        Err(e) => println!("Error fetching open orders: {:?}", e),
+    }
 
     // match order_manager.cancel_all_orders().await {
     //     Ok(orders) => println!("Cancelled Orders: {:?}", orders),
     //     Err(e) => println!("Error cancelling orders: {:?}", e),
     // }
+
+    let exchange_manager = exchange_manager::ExchangeManager::new(&api_url.to_string());
+
+    match exchange_manager.get_assets().await {
+        Ok(assets) => println!("Asset codes: {:?}", assets),
+        Err(e) => println!("Error fetching asset codes: {:?}", e),
+    }
 
     // Connect to the WebSocket server
     let (ws_stream, _response) = connect_async(url)
@@ -63,6 +76,20 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Now, correctly split ws_stream into a writer and reader parts
     let (mut write, read) = ws_stream.split();
+
+    // Construct the message
+    let message = json!({
+        "m": 0,
+        "i": 1,
+        "n": constants::ASSETS,
+
+    });
+
+    // Send the message as a text frame
+    write
+        .send(Message::Text(message.to_string()))
+        .await
+        .expect("Failed to send message");
 
     // // Define the payload
     // let payload = json!({
@@ -104,6 +131,27 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         "n":constants::SUBSCRIBE_TRADES,
         "o":trades_subscribe_payload.to_string()});
 
+    // Send the message as a text frame
+    write
+        .send(Message::Text(message.to_string()))
+        .await
+        .expect("Failed to send message");
+
+    let usdc_trades_subscribe_payload = json!({"OMSId":1,
+        "InstrumentId":90,
+        "IncludeLastCount":10});
+
+    let message = json!({"m": 0,
+        "i": 1,
+        "n":constants::SUBSCRIBE_TRADES,
+        "o":usdc_trades_subscribe_payload.to_string()});
+
+    // Send the message as a text frame
+    write
+        .send(Message::Text(message.to_string()))
+        .await
+        .expect("Failed to send message");
+
     // let order_book_subscribe_payload = json!({"OMSId":1,
     //     "InstrumentId":1,
     //     "Depth":10});
@@ -112,12 +160,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     //     "i": 1,
     //     "n":constants::SUBSCRIBE,
     //     "o":payload.to_string()});
-
-    // Send the message as a text frame
-    write
-        .send(Message::Text(message.to_string()))
-        .await
-        .expect("Failed to send message");
 
     let mut read = read;
     while let Some(message) = read.next().await {

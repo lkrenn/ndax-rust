@@ -2,6 +2,9 @@
 pub const WSS_URL: &str = "wss://api.ndax.io/WSGateway";
 pub const REST_URL: &str = "https://api.ndax.io:8443/AP/";
 
+// Exchange Data Endpoints
+pub const ASSETS: &str = "Assets";
+
 // Order book messages
 pub const SUBSCRIBE: &str = "SubscribeLevel2";
 pub const UPDATE: &str = "Level2UpdateEvent";

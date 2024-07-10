@@ -171,26 +171,3 @@ impl OrderManager {
         Ok(response)
     }
 }
-
-// #[derive(Serialize, Deserialize, Debug)]
-// struct Order {
-//     id: String,
-//     side: String,
-//     quantity: f64,
-//     price: f64,
-//     status: String,
-// }
-
-// #[derive(Serialize, Debug)]
-// struct OrderRequest {
-//     side: String,
-//     quantity: f64,
-//     price: f64,
-// }
-
-// #[derive(Deserialize, Debug)]
-// struct OrderResponse {
-//     id: String,
-//     status: String,
-//     filled_quantity: f64,
-// }
